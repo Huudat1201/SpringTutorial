@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security6">
+<head>
+<!-- Nhúng fragment head từ thư mục fragments -->
+<th:block th:replace="/admin/fragments/head :: head"></th:block>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+	<!-- Site wrapper -->
+	<div class="wrapper">
+
+		<th:block th:replace="/admin/fragments/header :: header"></th:block>
+		<!-- ===============================================  Sitebar-->
+		<th:block th:replace="/admin/fragments/sitebar :: sidebar"></th:block>
+		<!-- =============================================== -->
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<h1>Trang quản lý người dùng</h1>
+			</section>
+
+			<!-- Main content -->
+			<section class="content">
+				
+			</section>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+		<th:block th:replace="/admin/fragments/footer :: footer"></th:block>
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- jQuery 3 -->
+
+	<th:block th:replace="/admin/fragments/script :: scripts"></th:block>
+</body>
+</html>

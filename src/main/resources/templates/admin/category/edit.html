@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- Nhúng fragment head từ thư mục fragments -->
+<th:block th:replace="/admin/fragments/head :: head"></th:block>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+	<!-- Site wrapper -->
+	<div class="wrapper">
+
+		<th:block th:replace="/admin/fragments/header :: header"></th:block>
+		<!-- ===============================================  Sitebar-->
+		<th:block th:replace="/admin/fragments/sitebar :: sidebar"></th:block>
+		<!-- =============================================== -->
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<h1>Quản lý menu trang giao diện</h1>
+			</section>
+
+			<!-- Main content -->
+			<section class="content">
+
+				<!-- Default box -->
+				<div class="col-md-8">
+					<!-- general form elements -->
+					<div class="box box-primary">
+						<div class="box-header with-border">
+							<h3 class="box-title">Cập nhật menu</h3>
+						</div>
+						<!-- /.box-header -->
+						<!-- form start -->
+						<form role="form" th:object="${category}" th:action="@{/admin/category/edit}" method="post">
+							<input type="hidden" class="form-control" id="exampleInputEmail1"
+								th:field="*{id}">
+							<div class="box-body">
+								<div class="form-group">
+									<label for="exampleInputEmail1">Category Name</label> <input
+										type="text" class="form-control" id="exampleInputEmail1"
+										placeholder="Giới thiệu" th:field="*{categoryName}">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">Category Status</label>
+									<div>
+										<div class="form-check form-check-inline">
+											<input type="radio" class="form-check-input"
+												th:field="*{categoryStatus}" value="1" /> <label
+												class="form-check-label" for="inlineRadio1">Active</label>
+										</div>
+
+										<div class="form-check form-check-inline">
+											<input type="radio" class="form-check-input"
+												th:field="*{categoryStatus}" value="0" /> <label
+												class="form-check-label" for="inlineRadio2">Hidden</label>
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+							<!-- /.box-body -->
+
+							<div class="box-footer">
+								<a th:href="@{/admin/category}" class="btn btn-danger">Quay lại</a>
+								<button type="submit" class="btn btn-primary">Cập nhật</button>
+							</div>
+						</form>
+					</div>
+
+					<!-- /.box -->
+
+				</div>
+				<!-- /.box -->
+
+			</section>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<th:block th:replace="/admin/fragments/footer :: footer"></th:block>
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- jQuery 3 -->
+
+	<th:block th:replace="/admin/fragments/script :: scripts"></th:block>
+</body>
+</html>

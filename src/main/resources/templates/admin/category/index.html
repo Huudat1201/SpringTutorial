@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- Nhúng fragment head từ thư mục fragments -->
+<th:block th:replace="/admin/fragments/head :: head"></th:block>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+	<!-- Site wrapper -->
+	<div class="wrapper">
+
+		<th:block th:replace="/admin/fragments/header :: header"></th:block>
+		<!-- ===============================================  Sitebar-->
+		<th:block th:replace="/admin/fragments/sitebar :: sidebar"></th:block>
+		<!-- =============================================== -->
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<h1>Trang quản lý danh mục</h1>
+			</section>
+
+			<!-- Main content -->
+			<section class="content">
+
+				<!-- Default box -->
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header">
+							<a th:href="@{/admin/category/add}" class="btn btn-success">+Thêm
+								mới Menu</a>
+
+							<div class="box-tools">
+								<form>
+									<div class="input-group input-group-sm hidden-xs"
+										style="width: 150px;">
+										<input type="text" name="keyword"
+											class="form-control pull-right" placeholder="Search"
+											th:value="${keyword}">
+										<div class="input-group-btn">
+											<button type="submit" class="btn btn-default">
+												<i class="fa fa-search"></i>
+											</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+						<!-- /.box-header -->
+						<div class="box-body table-responsive no-padding">
+							<table class="table table-hover">
+								<tbody>
+									<tr>
+										<th>ID</th>
+										<th>Tên</th>
+										<th>Trạng thái</th>
+										<th>Action</th>
+									</tr>
+									<tr th:each="category : ${list}">
+										<td th:text="${category.id}"></td>
+										<td th:text="${category.categoryName}"></td>
+										<td th:if="${category.categoryStatus == true}"><span
+											class="label label-success">Hiện</span></td>
+										<td th:if="${category.categoryStatus == false}"><span
+											class="label label-danger">Ẩn</span></td>
+										<td><a
+											th:href="@{/admin/category/edit/{id}(id=${category.id})}"
+											class="btn btn-success">Edit</a> <a
+											th:href="@{/admin/category/delete/{id}(id=${category.id})}"
+											class="btn btn-danger">Delete</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="box-footer clearfix">
+							<ul class="pagination pagination-sm no-margin pull-right">
+								<li th:if="${currentPage > 1}"><a
+									th:href="@{'?pageNo='+${currentPage - 1}}"><</a></li>
+								<!--  <li th:each="i:${#numbers.sequence(1, totalPage)}" th:classappend="${currentPage == i ? 'active' : ''}"><a th:href="@{'?pageNo='+${i}}" th:text="${i}"></a></li>-->
+								<li th:each="i:${#numbers.sequence(1, totalPage)}"
+									th:classappend="${currentPage == i ? 'active' : ''}"><a
+									th:href="@{${keyword != null && keyword != '' ? '?keyword=' + keyword + '&':'?'} + 'pageNo='+${i}}"
+									th:text="${i}"></a></li>
+								<li th:if="${currentPage < totalPage}"><a
+									th:href="@{'?pageNo='+${currentPage + 1}}">></a></li>
+							</ul>
+						</div>
+						<!-- /.box-body -->
+					</div>
+					<!-- /.box -->
+				</div>
+				<!-- /.box -->
+
+			</section>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<th:block th:replace="/admin/fragments/footer :: footer"></th:block>
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- jQuery 3 -->
+
+	<th:block th:replace="/admin/fragments/script :: scripts"></th:block>
+</body>
+</html>
